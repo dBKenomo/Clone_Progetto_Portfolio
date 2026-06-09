@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres_dw:
+    image: postgres:16-alpine
+    container_name: postgres_data_warehouse
+    environment:
+      POSTGRES_USER: dw_user
+      POSTGRES_PASSWORD: dw_password
+      POSTGRES_DB: data_warehouse
+    ports:
+      - "5432:5432"
+    volumes:
+      # Mappa i dati in una cartella locale che rispetta la tua regola di esclusione
+      - ./postgres_data:/var/lib/postgresql/data
+      # Mappa la tua cartella locale dei dataset dentro il container
+      - ./datasets:/var/lib/postgresql/datasets:ro
+    restart: unless-stopped

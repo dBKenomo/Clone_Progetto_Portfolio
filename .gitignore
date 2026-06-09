@@ -1,2 +1,4 @@
-Ignora la cartella idee
+# Ignora la cartella idee
 idee/
+postgres_data/
+.vscode/
