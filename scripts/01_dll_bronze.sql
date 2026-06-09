@@ -9,7 +9,8 @@ E in fine c'è il processo per verificare se tutti i passi fatti sono stati fatt
 chiamando una query e verificando che i dati sono nelle giuste colonne.
 
 Aggiornamenti:
-
+ - Esiste una versione più migliore che per ora si chiama 02_??Bronze_call.sql
+ 
 
 */
 
@@ -47,8 +48,8 @@ BEGIN
         prod_end_date TIMESTAMP
     );
 
-    DROP TABLE IF EXISTS bronze.crm_sales_dettails;
-    CREATE TABLE bronze.crm_sales_dettails (
+    DROP TABLE IF EXISTS bronze.crm_sales_details;
+    CREATE TABLE bronze.crm_sales_details (
         sls_ord_num VARCHAR(50),
         sls_prd_key VARCHAR(50),
         sls_cust_id INT,
@@ -111,8 +112,8 @@ BEGIN
         ENCODING 'UTF8'
     );
 
-    TRUNCATE TABLE bronze.crm_sales_dettails;
-    COPY bronze.crm_sales_dettails
+    TRUNCATE TABLE bronze.crm_sales_details;
+    COPY bronze.crm_sales_details
     FROM '/var/lib/postgresql/datasets/source_crm/sales_details.csv'
     WITH (
         FORMAT CSV,
@@ -167,7 +168,7 @@ CALL bronze.load_bronze();
 -- una semplice query di selezione per vedere se i dati sono presenti
 SELECT * FROM bronze.crm_cust_info LIMIT 5;
 SELECT * FROM bronze.crm_prd_info LIMIT 5;
-SELECT * FROM bronze.crm_sales_dettails LIMIT 5;
+SELECT * FROM bronze.crm_sales_details LIMIT 5;
 SELECT * FROM bronze.erp_cust_az12 LIMIT 5;
 SELECT * FROM bronze.erp_loc_a101 LIMIT 5;
 SELECT * FROM bronze.erp_px_cat_g1v2 LIMIT 5;

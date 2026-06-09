@@ -21,3 +21,5 @@ Controllo del codice scritto e anche della sua validità per poi il suo utilizzo
 
 Per finire la documentazione non riguarda solamente la parte generale ma anche di andare a scrivere il quello che serve per essere capito anche a distanza di tempo.
 C'è anche da tenere conto la fase di creare e/o aggiornare la documentazione con Git.
+
+![Data Flow Bronze](Data_Flow_bronze.drawio.png)
