@@ -24,8 +24,6 @@ Aggiornamenti:
 -- una buona alternativa è questa:
 
 
--- Per essere sicuri di essere sicuri di essere connessi al database corretto.
--- @block SQL Data Warehouse
 
 -- Creazione dei SCHEMA
 CREATE SCHEMA IF NOT EXISTS bronze;
@@ -35,7 +33,6 @@ CREATE SCHEMA IF NOT EXISTS gold;
 
 
 -- ================== AGGIORNAMENTI =============================
---@block SQL Data Warehouse
 
 /*
 =============================================================
