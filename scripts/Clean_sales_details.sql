@@ -121,8 +121,34 @@ FROM bronze.crm_sales_details
 -- Purtroppo la validazione non è stata potuta fare dato che per questa cosa c'è un piccolo errore che è da
 -- capire come risolvere per poter inserire i dati in modalità veloce sono dovuto passare a chiedere a Gemini
 -- un consiglio su come scrivere il codice in modo da riuscire a caricare i dati nello schema Silver di questa
--- tabella. IL problema a quanto pare si trova nel file CSV di Origine dato la riga 46699 e la riga 46700 hanno
+-- tabella. Il problema a quanto pare si trova nel file CSV di Origine dato la riga 46699 e la riga 46700 hanno
 -- il valore della colonna sls_order_dt sballato.
 -- A quanto pare la procedura identica al interno del video mi ha dato lo stesso errore non capisco come mai 
 
 SELECT * FROM silver.crm_sales_details WHERE sls_ord_num = 'SO69215'
+
+SELECT
+    *
+FROM silver.crm_sales_details
+WHERE sls_order_dt > sls_ship_dt OR sls_ship_dt > sls_due_dt
+OR sls_order_dt IS NULL OR sls_ship_dt IS NULL OR sls_due_dt IS NULL
+-- Come si nota da questa Query in sls_order_dt ci sono 19 casi in cui il valore è NULL
+
+
+
+SELECT DISTINCT
+    sls_sales,
+    sls_quantity,
+    sls_price
+FROM silver.crm_sales_details
+WHERE sls_sales != sls_quantity * sls_price
+OR sls_sales IS NULL OR sls_quantity IS NULL OR sls_price IS NULL
+OR sls_sales <= 0 OR sls_quantity <= 0 OR sls_price <= 0
+ORDER BY sls_sales, sls_quantity, sls_price
+-- Purtroppo come vediamo la situazione non è proprio ideale dato che sono in una situazione non molto chiara
+-- la soluzione dipende molto qui se si trova un FIX a sorgente cioè dalla risorsa dei dati oppure il FIX viene
+-- fatto al interno della Warehouse.
+-- Il processo richiede delle regole da essere scritte:
+-- 1. Se Sales sono Negative, Zero o NULL usare la formula usando Quantità e Prezzo
+-- 2. Se il Prezzo è NULL o Zero calcolare usando Sales e Quantità
+-- 3. Se il Prezzo è Negativo va convertito in positivo
