@@ -51,6 +51,7 @@ LEFT JOIN silver.erp_cust_az12 ca ON ci.cst_key = ca.cid
 LEFT JOIN silver.erp_loc_a101 la ON ci.cst_key = la.cid
 ORDER BY 1,2;
 
+-- ====================================
 -- Ora le colonne sono uniche quindi possiamo passare alla fase finale di costruzione della tabella finale
 SELECT
     ROW_NUMBER() OVER (ORDER BY ci.cst_id) AS customer_key,
@@ -67,7 +68,7 @@ SELECT
     ci.cst_create_date AS create_date
 FROM silver.crm_cust_info ci
 LEFT JOIN silver.erp_cust_az12 ca ON ci.cst_key = ca.cid
-LEFT JOIN silver.erp_loc_a101 la ON ci.cst_key = la.cid
+LEFT JOIN silver.erp_loc_a101 la ON ci.cst_key = la.cid;
 
 
 -- ====================================
@@ -106,6 +107,7 @@ WHERE pn.prod_end_date IS NULL
 GROUP BY prod_key
 HAVING COUNT(*) > 1;
 
+-- ====================================
 -- Assegnamo ora nomi più convenzionali
 SELECT
     ROW_NUMBER() OVER (ORDER BY pn.prod_start_date, pn.prod_key) AS product_key,
@@ -122,7 +124,6 @@ SELECT
 FROM silver.crm_prd_info pn
 LEFT JOIN silver.erp_px_cat_g1v2 px ON pn.cat_id = px.id
 WHERE pn.prod_end_date IS NULL;
-
 
 
 -- ====================================
@@ -143,7 +144,7 @@ SELECT
     sd.sls_price AS price
 FROM silver.crm_sales_details sd
 LEFT JOIN gold.dim_products dp ON sd.sls_prd_key = dp.product_number
-LEFT JOIN gold.dim_customers dc ON sd.sls_cust_id = dc.customer_id
+LEFT JOIN gold.dim_customers dc ON sd.sls_cust_id = dc.customer_id;
 
 
 

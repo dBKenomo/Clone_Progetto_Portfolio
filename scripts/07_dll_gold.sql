@@ -6,13 +6,17 @@ Descrizione: Dopo aver lavorato alla procedura di creazione di come deve essere 
  Warehouse si deve procedere con la fase di caricamento dei dati e delle nuove tabelle da dare alle persone
  per visualizzare le informazioni.
 
-
+ Nota: Per arrivare a costruire la query per ogni tabella del gold layer lo sviluppo è avvenuto nel file 
+ 06_Creazione_Modello.sql quindi se si vuole vedere la procedura andare in quel file.
 
 Aggiornamenti:
  
 
 */
 
+-- ==================================
+--        Costumers VIEW
+-- ==================================
 
 CREATE VIEW gold.dim_customers AS
 SELECT
@@ -32,7 +36,9 @@ FROM silver.crm_cust_info ci
 LEFT JOIN silver.erp_cust_az12 ca ON ci.cst_key = ca.cid
 LEFT JOIN silver.erp_loc_a101 la ON ci.cst_key = la.cid
 
-
+-- ==================================
+--        Products VIEW
+-- ==================================
 
 CREATE VIEW gold.dim_products AS
 SELECT
@@ -51,7 +57,9 @@ FROM silver.crm_prd_info pn
 LEFT JOIN silver.erp_px_cat_g1v2 px ON pn.cat_id = px.id
 WHERE pn.prod_end_date IS NULL
 
-
+-- ==================================
+--             Sales VIEW
+-- ==================================
 
 CREATE VIEW gold.fact_sales AS
 SELECT
@@ -73,6 +81,9 @@ LEFT JOIN gold.dim_customers dc ON sd.sls_cust_id = dc.customer_id
 -- =================================
 --    VALIDAZIONE GOLD LAYER
 -- =================================
+
+-- Per fare una migliore validazione se tutto funziona al meglio provo ad unire tutte le colonne in un unica 
+-- grande tabella
 
 SELECT * FROM gold.fact_sales fs
 LEFT JOIN gold.dim_customers dc ON fs.customer_key = dc.customer_key
