@@ -8,6 +8,8 @@ Solo che nel creare questo Layer non è una questione di semplice dato che quest
 La parte di analisi richiede quindi di andare ad individuare quali sono queste domande che possono essere fatte nel mondo Business e da questo poi anche capirle in questo modo da creare qualcosa di adeguato nel Layer Gold.
 Ecco quindi che in questa fase si va nella scelta di quale sia il giusto tipo di Data Model da utilizzare per il nostro caso.
 
+![Data Integration tabelle](Data_Integration_type.drawio.png)
+
 ### Tipi di Data Model
 
 Ci sono due principali tipologie di Data Model che si chiamano Star Schema e Snowflake Schema.
@@ -20,6 +22,8 @@ Ci sono due principali tipologie di Data Model che si chiamano Star Schema e Sno
 
 Le dimension table sono delle tabelle che nei loro dati contengono descrizioni delle infomazioni dei dati a cui sono state abbinate.
 In contrario le fact table sono delle tabelle che contengono infomazioni che ti permettono di viaggiare anche poi tra le dimension table.
+
+![Data Flow Gold](Data_Flow_gold.drawio.png)
 
 ## Fare codice
 
@@ -41,5 +45,4 @@ Quando finalmente è tutto finito è arrivato il momento di fare tutta la proced
 Solo che oltre ad aggiornare i diagrammi fatti in questa ultima fase dato che abbiamo cambiato molte cose nella nostra stuttura una buona cosa è quello di rilascaire una documentazione più dettagliata di come lavorare da qui in poi.
 Sto parlando della questione che al momento abbiamo cambiato i nomi di tabelle, colonne e ci sono colonne che magari prima non c'erano oppure adesso ci sono ecco quindi che dobbiamo scrivere una guida.
 
-![Data Flow Gold](Data_Flow_gold.drawio.png)
-![Data Integration tabelle](Data_Integration_type.drawio.png)
+![Data Model](Data_Model.drawio.png)
