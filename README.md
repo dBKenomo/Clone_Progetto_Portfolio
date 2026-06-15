@@ -4,6 +4,6 @@ Questa Reposotory è un clone di quello fatto dallo YouTuber [Data with Baraa](h
 
 ## Tools e Programmi
 
-- VSCode (Markdonlint, Docker, Database Client, Rainbow CSV)
+- VSCode (Markdownlint, Docker, Database Client, Rainbow CSV)
 - Terminale (Git, Docker)
 - Draw.io
