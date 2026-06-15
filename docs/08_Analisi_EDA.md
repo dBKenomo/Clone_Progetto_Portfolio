@@ -21,20 +21,22 @@ Per questo utilizzare questo grafico potrebbe essere utile:
 ```mermaid
     graph TD
     A[Analisi Colonna del Dataset] --> B{Il tipo di dato è numerico?}
-    
+    style A fill:#333333,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style B fill:#444444,stroke:#ffffff,stroke-width:2px,color:#ffffff
+
     %% Caso: NON è un numero
     B -- No --> C[È una DIMENSIONE]
-    style C fill:#d4edda,stroke:#28a745,stroke-width:2px
+    style C fill:#1e4620,stroke:#28a745,stroke-width:2px,color:#ffffff
     
     %% Caso: È un numero
     B -- Sì --> D{Ha senso AGGREGARE il dato?<br>Es. Fare la Somma o la Media?}
-    
+    style D fill:#444444,stroke:#ffffff,stroke-width:2px,color:#ffffff
+
     %% Risposta al senso di aggregare
     D -- No --> E[È una DIMENSIONE<br>Es. ID, Codici, CAP]
     D -- Sì --> F[È una MISURA<br>Es. Ricavi, Quantità, Costi]
-    
-    style E fill:#d4edda,stroke:#28a745,stroke-width:2px
-    style F fill:#cce5ff,stroke:#004085,stroke-width:2px
+    style E fill:#1e4620,stroke:#28a745,stroke-width:2px,color:#ffffff
+    style F fill:#0a3663,stroke:#0056b3,stroke-width:2px,color:#ffffff
 ```
 
 Una volta compresa questa distinzione, il passo successivo nell'EDA è l'analisi delle tabelle.
