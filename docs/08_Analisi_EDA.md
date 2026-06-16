@@ -6,7 +6,7 @@ Per svolgere questo processo le cose da fare sono quelle di capire come funziona
 
 Però prima di procedere a fare questa analisi uno dei primi passi da fare è quello di fare prima una piccola distinzione dei dati che sono presenti nel Database che riguarda il fatto di capire cosa sono le colonne.
 
-### Dimensioni e Misure
+<h3>Dimensioni e Misure</h3>
 
 Le dimensioni sono colonne che contengono dati descrittivi o categorici.
 Le misure sono colonne che contengono dati numerici e quantificabili.
